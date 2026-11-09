@@ -11,6 +11,17 @@ iframe{position:fixed;inset:0;width:100%;height:100%;height:100dvh;border:0;disp
 </style>
 </head>
 <body>
-<iframe src="https://script.google.com/macros/s/AKfycbwq8eH1fAvSNlqUPyjzyKo5d9ZEqbCH57xz-We2tSuqhN2sRdP1IxQ80zS4oHEXaVkZ/exec?mode=tra" title="K-JEJU CHICKEN thành viên" allow="clipboard-write"></iframe>
+<iframe id="app" title="K-JEJU CHICKEN thành viên" allow="clipboard-write"></iframe>
+<script>
+// Chuyển số bàn từ QR (?khach-hang-ban=7) vào app Google Apps Script
+var u = "https://script.google.com/macros/s/AKfycbwq8eH1fAvSNlqUPyjzyKo5d9ZEqbCH57xz-We2tSuqhN2sRdP1IxQ80zS4oHEXaVkZ/exec?mode=tra";
+var q = new URLSearchParams(location.search);
+var ban = parseInt(q.get("khach-hang-ban") || q.get("ban"), 10);
+if (ban >= 1 && ban <= 25) {
+  u += "&ban=" + ban;
+  document.title = "Khách hàng bàn " + ban + " · K-JEJU CHICKEN";
+}
+document.getElementById("app").src = u;
+</script>
 </body>
 </html>
